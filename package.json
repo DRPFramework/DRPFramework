@@ -1,0 +1,47 @@
+{
+  "name": "drpframework",
+  "version": "1.0.0",
+  "description": "AltV Roleplay Framework",
+  "scripts": {
+    "build": "node ./scripts/organizer.js clear && tsc -p ./config/server.json && tsc -p ./config/client.json && npm run copy:meta && node ./scripts/organizer.js rename && npm run copy:html && npm run copy:server",
+    "build:server:watch": "tsc -w -p ./config/client.json",
+    "build:client:watch": "tsc -w -p ./config/server.json",
+    "copy:meta": "cd ./src && copyfiles resource.cfg ../dist/ && copyfiles ./config/**/* ../dist/",
+    "copy:html": "cd ./src && copyfiles ./html/**/* ../dist/",
+    "copy:server": "cd ./dist && copyfiles **/* ../../Server/resources/drp/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DRPFramework/DRPFramework.git"
+  },
+  "keywords": [
+    "AltV"
+  ],
+  "author": "Draww",
+  "license": "GNU3",
+  "bugs": {
+    "url": "https://github.com/DRPFramework/DRPFramework/issues"
+  },
+  "homepage": "https://github.com/DRPFramework/DRPFramework#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "@altv/types-client": "^1.1.1",
+    "@altv/types-natives": "^1.1.0",
+    "@altv/types-server": "^1.4.4",
+    "@altv/types-webview": "^1.0.2",
+    "@types/node": "^14.11.2",
+    "@types/sjcl": "^1.0.29",
+    "copyfiles": "^2.3.0",
+    "fs": "0.0.1-security",
+    "prettier": "^2.1.2",
+    "sjcl": "^1.0.8",
+    "typeorm": "^0.2.26",
+    "typescript": "^4.0.3"
+  },
+  "prettier": {
+    "printWidth": 120,
+    "tabWidth": 2,
+    "singleQuote": true,
+    "bracketSpacing": true
+  }
+}
