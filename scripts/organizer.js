@@ -5,16 +5,12 @@ const renames = [
   {
     value: /import \* as MariaDb from ['"]mariadb['"](?:;)?/gm,
     replaceValue: "import MariaDb from 'mariadb';",
-    need: {
-      file: /Database\.mjs$/,
-    },
+    file: /Database\.mjs$/
   },
   {
     value: /import \* as sjcl from ['"]sjcl['"](?:;)?/gm,
     replaceValue: "import sjcl from 'sjcl';",
-    need: {
-      file: /encryption.mjs$/
-    }
+    file: /encryption.mjs$/
   },
 ];
 
@@ -47,7 +43,7 @@ function parseAllDirectories(previousDirectory, directories) {
       let changed = false;
       for (let renameId in renames) {
         let renameData = renames[renameId];
-        if (renameData.need != null && renameData.need.file != null) if (!newName.match(renameData.need.file)) continue;
+        if (renameData.file != null) if (!newName.match(renameData.file)) continue;
         data = data.replace(renameData.value, renameData.replaceValue);
         changed = true;
       }
