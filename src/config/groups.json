@@ -1,0 +1,13 @@
+{
+    "default": {
+        "name": "Default",
+        "permissions": [],
+        "default": true
+    },
+    "admin": {
+        "name": "Admin",
+        "permissions": [
+            "bypass.ban"
+        ]
+    }
+}
