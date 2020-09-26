@@ -19,6 +19,7 @@ function showAuthPanel() {
 
   showCursor(true);
   game.freezeEntityPosition(alt.Player.local.scriptID, true);
+  game.setEntityVisible(alt.Player.local.scriptID, false, false);
   alt.toggleGameControls(false);
 }
 
@@ -27,6 +28,7 @@ function exitAuthPanel() {
 
   showCursor(false);
   game.freezeEntityPosition(alt.Player.local.scriptID, false);
+  game.setEntityVisible(alt.Player.local.scriptID, true, false);
   alt.toggleGameControls(true);
 }
 
