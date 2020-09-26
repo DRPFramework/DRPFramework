@@ -33,6 +33,7 @@
     "@types/sjcl": "^1.0.29",
     "copyfiles": "^2.3.0",
     "fs": "0.0.1-security",
+    "mariadb": "^2.4.2",
     "prettier": "^2.1.2",
     "sjcl": "^1.0.8",
     "typeorm": "^0.2.26",

@@ -5,7 +5,7 @@ const renames = [
   {
     value: /import \* as MariaDb from ['"]mariadb['"](?:;)?/gm,
     replaceValue: "import MariaDb from 'mariadb';",
-    file: /Database\.mjs$/
+    file: /DatabaseManager\.mjs$/
   },
   {
     value: /import \* as sjcl from ['"]sjcl['"](?:;)?/gm,
