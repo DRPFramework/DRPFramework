@@ -10,6 +10,6 @@ alt.Player.prototype.isBanned = function() {
   return DRP.banManager.isBanned(this);
 };
 
-alt.Player.prototype.hasPerm = function(permission: string): boolean {
-  return DRP.groupManager.hasPerm(this, permission);
+alt.Player.prototype.hasPerm = function(permission: string, controlParent: boolean): boolean {
+  return DRP.groupManager.hasPerm(this, permission, controlParent);
 }
