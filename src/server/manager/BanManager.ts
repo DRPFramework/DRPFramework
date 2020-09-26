@@ -14,9 +14,9 @@ export class BanManager {
     }
   }
 
-  public ban(player: alt.Player) {
+  public ban(player: alt.Player, reason?: string) {
     this.users.push(player.hwidHash);
-    player.kick('You have been banned from this server!');
+    player.kick(reason == null ? 'Sunucudan uzaklaştırıldın!' : reason);
   }
 
   public unBan(playerId: string) {
