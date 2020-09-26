@@ -25,7 +25,7 @@ export class DatabaseManager {
     return this.connection != null ? this.connection.isValid() : false;
   }
 
-  public query(query: string, values?: any[]): Promise<any> {
+  public query(query: string, values?: any): Promise<any> {
     return this.connection != null && this.connection.isValid
       ? this.connection.query(query, values)
       : new Promise((resolve, reject) => reject('No database connection!'));

@@ -43,7 +43,7 @@ export class GroupManager {
   }
 
   public getDefaultGroup(): [string, Group] {
-    return Array.from(this.groups).find((data) => data[1].default);
+    return this.groups == null || this.groups.size <= 0 ? [null, null] : Array.from(this.groups).find((data) => data[1].default);
   }
 }
 

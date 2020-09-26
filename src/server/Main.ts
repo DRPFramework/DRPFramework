@@ -23,6 +23,7 @@ const config: ConfigType = JSON.parse(fs.readFileSync(path.join(configDir, 'gene
 
 const banManager: BanManager = new BanManager();
 const groupManager: GroupManager = new GroupManager();
+groupManager.loadGroups();
 
 const databaseManager: DatabaseManager = new DatabaseManager({
   host: config.database.host,

@@ -7,7 +7,7 @@ alt.onClient('auth:Try', handleAuthAttempt);
 alt.on('auth:Done', debugDoneAuth);
 
 function debugDoneAuth(player: alt.Player, id: string, username: string, email: string) {
-  alt.log(`[DRP] ${username}@${id} kayıt oldu!`);
+  alt.log(`[DRP] ${username}@${id} giriş yaptı!`);
 }
 
 async function handleAuthAttempt(player: alt.Player, username: string, password: string, email: string) {
@@ -25,14 +25,15 @@ async function handleAuthAttempt(player: alt.Player, username: string, password:
 
 async function handleRegistration(player: alt.Player, username: string, password: string, email: string) {
   DRP.databaseManager
-    .query('select * from users where Email = ? OR Username = ?', [email, username])
+    .query('select * from users where `Email` = ? OR `Username` = ?', [email, username])
     .then((data) => {
       if (data[0] != null) {
         alt.emitClient(player, 'auth:Error', 'Kullanıcı adı veya E-Posta zaten kullanımda!');
         return;
       }
 
-      const defaultGroup = DRP.groupManager.getDefaultGroup()[0];
+      let defaultGroup = DRP.groupManager.getDefaultGroup()[0];
+      if (defaultGroup == null) defaultGroup = "default";
 
       DRP.databaseManager
         .query(
@@ -47,27 +48,27 @@ async function handleRegistration(player: alt.Player, username: string, password
             alt.emitClient(player, 'auth:Error', 'Kullanıcı kaydı yapılırken bilinmeyen bir hata oluştu!');
           }
         })
-        .catch((err) => alt.logError(err));
+        .catch((err) => console.log(err));
     })
-    .catch((err) => alt.logError(err));
+    .catch((err) => console.log(err));
 }
 
 async function handleLogin(player: alt.Player, username: string, password: string) {
   DRP.databaseManager
-    .query('select * from users where Username = ?', [username])
+    .query('select * from users where `Username` = ?', [username])
     .then((data) => {
       if (data[0] == null) {
-        alt.emitClient(player, 'auth:Error', 'Kullanıcı adı veya Şifre hatalı!1');
+        alt.emitClient(player, 'auth:Error', 'Kullanıcı adı veya Şifre hatalı!');
         return;
       }
 
       if (!EncryptionUtil.verifyPassword(password, data[0].Password)) {
-        alt.emitClient(player, 'auth:Error', 'Kullanıcı adı veya Şifre hatalı!2');
+        alt.emitClient(player, 'auth:Error', 'Kullanıcı adı veya Şifre hatalı!');
         return;
       }
 
       player.setSyncedMeta('Group', data[0].Group);
       alt.emit('auth:Done', player, data[0].UUID, data[0].Username, data[0].Email);
     })
-    .catch((err) => alt.logError(err));
+    .catch((err) => console.log(err));
 }
