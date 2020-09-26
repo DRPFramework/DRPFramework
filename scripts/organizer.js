@@ -10,7 +10,7 @@ const renames = [
   {
     value: /import \* as sjcl from ['"]sjcl['"](?:;)?/gm,
     replaceValue: "import sjcl from 'sjcl';",
-    file: /encryption.mjs$/
+    file: /Encryption.mjs$/
   },
 ];
 

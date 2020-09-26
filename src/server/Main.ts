@@ -4,10 +4,12 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 import { DatabaseManager } from './database/DatabaseManager';
-import { BanManager } from './general/BanManager';
-import { GroupManager } from './general/GroupManager';
+import { BanManager } from './manager/BanManager';
+import { GroupManager } from './manager/GroupManager';
+import { UserManager } from './manager/UserManager';
 
 import './extensions/Player';
+import './systems/AuthSystem';
 
 const mainDir = alt.getResourcePath('drp');
 const configDir = path.join(mainDir, 'config');
@@ -40,5 +42,6 @@ databaseManager.open((_connection, error) => {
 
 const banManager: BanManager = new BanManager();
 const groupManager: GroupManager = new GroupManager();
+const userManager: UserManager = new UserManager();
 
-export { mainDir, configDir, config, databaseManager, banManager, groupManager };
+export { mainDir, configDir, config, databaseManager, banManager, groupManager, userManager };
