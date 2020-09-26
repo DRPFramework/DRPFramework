@@ -13,13 +13,13 @@ const mainDir = alt.getResourcePath('drp');
 const configDir = path.join(mainDir, 'config');
 
 type ConfigType = {
-    database: {
-        host: string,
-        database: string,
-        user: string,
-        password: string
-    }
-}
+  database: {
+    host: string;
+    database: string;
+    user: string;
+    password: string;
+  };
+};
 
 const config: ConfigType = JSON.parse(fs.readFileSync(path.join(configDir, 'general.json'), 'utf-8'));
 

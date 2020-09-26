@@ -16,7 +16,7 @@ export class BanManager {
 
   public ban(player: alt.Player) {
     this.users.push(player.hwidHash);
-    player.kick("You have been banned from this server!");
+    player.kick('You have been banned from this server!');
   }
 
   public unBan(playerId: string) {
