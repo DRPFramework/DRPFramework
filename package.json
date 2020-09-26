@@ -1,6 +1,6 @@
 {
   "name": "drpframework",
-  "version": "1.0.0",
+  "version": "0.0.1-dev",
   "description": "AltV Roleplay Framework",
   "scripts": {
     "build": "node ./scripts/organizer.js clear && tsc -p ./config/server.json && tsc -p ./config/client.json && npm run copy:meta && node ./scripts/organizer.js rename && npm run copy:html && npm run copy:server",
