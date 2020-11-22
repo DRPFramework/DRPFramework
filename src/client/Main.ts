@@ -1,1 +1,1 @@
-import './systems/AuthSystem';
+import './systems/ChatSystem';

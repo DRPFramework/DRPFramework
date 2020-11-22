@@ -1,25 +1,14 @@
 import * as alt from 'alt-server';
-
-import * as fs from 'fs';
-import * as path from 'path';
+import config from './General';
 
 import { DatabaseManager } from './database/DatabaseManager';
 import { BanManager } from './manager/BanManager';
 import { GroupManager } from './manager/GroupManager';
 
+import * as path from 'path';
+
 const mainDir = alt.getResourcePath('drp');
 const configDir = path.join(mainDir, 'config');
-
-type ConfigType = {
-  database: {
-    host: string;
-    database: string;
-    user: string;
-    password: string;
-  };
-};
-
-const config: ConfigType = JSON.parse(fs.readFileSync(path.join(configDir, 'general.json'), 'utf-8'));
 
 const banManager: BanManager = new BanManager();
 const groupManager: GroupManager = new GroupManager();
@@ -40,10 +29,10 @@ databaseManager.open((_connection, error) => {
   alt.log('[DRP] Database connection established.');
 });
 
+export { mainDir, config, configDir, databaseManager, banManager, groupManager };
+
+import './systems/ChatSystem';
+
 import './extensions/Player';
 
 import './events/PlayerConnect';
-
-import './systems/AuthSystem';
-
-export { mainDir, configDir, config, databaseManager, banManager, groupManager };

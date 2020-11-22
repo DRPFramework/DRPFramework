@@ -1,8 +1,0 @@
-{
-    "database": {
-        "host": "localhost",
-        "database": "drp",
-        "user": "root",
-        "password": ""
-    }
-}
